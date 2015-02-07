@@ -15,7 +15,7 @@ owner:
   email:          mailvarun93@gmail.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        twitter.com/varunest
-  facebook:       facebook.com/mailvarun93
+  facebook:       
   github:         github.com/varunest/
   stackexchange:  
   linkedin:       in.linkedin.com/in/varunest
@@ -23,7 +23,7 @@ owner:
   flickr:         
   tumblr:         
   # google plus id, include the '+', eg +mmistakes
-  google_plus:    +varunverma93
+  google_plus:    
 
 # Background image to be tiled on all pages
 background: 
