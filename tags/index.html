@@ -1,8 +1,10 @@
 ---
 layout: post-index
-title: Tag Archive
+title: Tags to guide you to right place
 description: "An archive of posts sorted by tag."
 comments: false
+image:
+   feature: tags.jpg
 ---
 
 {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}

@@ -1,10 +1,10 @@
 ---
 layout: page
 title: About Me
-image:
-  feature: abstract-5.jpg
 comments: false
 modified: 2015-2-7
+image:
+  background: ps_neutral.png
 ---
 ![varun image]({{site.url}}/images/varun.jpg){: .image-right}My name is Varun Verma. I live in Chandigarh, India with my friends, family, laptop and a whole lot of gadget thingies. I am weaning as a developer and designer, being a college student. And this blog, its content and opinions are my own.
 
@@ -12,7 +12,7 @@ I spend time programming, developing android apps and games. Besides developing 
 
 If you want to email me, go ahead send an email to **mailvarun93@gmail.com**. I’m also on
 
-<div markdown="0"><a href="http://www.github.com/varunest" class="btn">Github</a>   <a href="http://www.twitter.com/varunest" class="btn btn-info">Twitter</a> <a href="http://plus.google.com/u/0/+varunverma93/posts" class="btn btn-danger">Google+</a> <a href="https://www.facebook.com/mailvarun93" class="btn btn-info">Facebook</a></div>
+<div markdown="0"><a href="http://www.github.com/varunest" class="btn">Github</a>   <a href="http://www.twitter.com/varunest" class="btn btn-info">Twitter</a> <a href="http://plus.google.com/u/0/+varunverma93/posts" class="btn btn-danger">Google+</a> <a href="https://www.facebook.com/mailvarun93" class="btn btn-success">Facebook</a></div>
 
 ##CURRENTLY INVOLVED IN 
 •     I am currently intern in Zscaler, and also in last year of my college. Zscaler is a cloud security provider, to know more about Zscaler [click here](en.wikipedia.org/wiki/Zscaler)
