@@ -11,7 +11,7 @@ image:
   creditlink:
 comments: false
 share: false
-date: 2015-02-10T00:00:30+05:30
+date: 2015-02-9T00:00:30+05:30
 ---
 >###I concur with the opinion that a person should establish his/her identity in the virtual world aka the world of Internet. Consequence being, this Blog.
 
