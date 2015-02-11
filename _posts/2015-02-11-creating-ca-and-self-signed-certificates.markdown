@@ -57,17 +57,17 @@ Verifying password - Enter PEM pass phrase:
 ###Removing Passphrase : 
 Since we now have our CA's private key, we should probably remove passphrase from it because it can be inconvinient to type passphrase every time we perform operation with this key(keeping in mind that the operations are very large in number). This can done in many ways, one way to do so is following : 
 
-~~~ bash
+{% highlight bash %}
 cp rootCA.key rootCA.key.org
 openssl rsa -in rootCA.key.org -out rootCA.key
-~~~ 
+{% endhighlight %}
 
 ###Creating CA self signed Certificate :
 Fire this command in the terminal to create your CA Certificate : 
 
-~~~ bash
+{% highlight bash %}
 openssl req  -new -x509 -days 999 -key rootCA.key -out rootCA.crt
-~~~
+{% endhighlight %}
 
 There will be following prompts : 
 
