@@ -102,9 +102,9 @@ openssl req -new -key server.key -out server.csr
 * Now remove passphrase from the `server.key` like we did earlier
 * Generally, the CSR created by the server i.e `server.csr` is sent to the CA from which you want your certificate. Since here ourselves are the CA therefore we will sign the certificate using our CA Certificate `rootCA.crt` by the following command : 
 
-~~~ bash 
+{% highlight bash %} 
 openssl ca -batch -days 999 -in server.csr -out server.crt -keyfile rootCA.key -cert rootCA.crt
-~~~
+{% endhighlight %}
 
 This command will issue you **server.crt** which will be valid for 999 days. And voilà you have server certificate which is issued by you :D.
  
