@@ -4,7 +4,7 @@ title: "Creating your own CA & self signed Certificates"
 modified:
 categories: 
 description: Guide to create your own Central Authority and certificates signed by it.
-tags: [Server, Authentication, Encryption]
+tags: [Server, Encryption]
 image:
   feature:
   credit:
@@ -30,7 +30,7 @@ This is just simplified overview, a lot more happens behind the screen. For now 
 
 **Note** : This procedure is done in OSX, which is unix based operating system. For other  machines the procedure should be similar.
 
-#Creating your own CA
+##Creating your own CA
 Before we start it is important to note that the certificates signed by your CA will not be accepted by the browsers because they won't trust your CA. You must add your own CA in browsers trusted CA's list. 
 To create CA Open up your terminal and check whether `openssl` is installed or not. Fire this command :  
 {% highlight bash %}
@@ -89,7 +89,7 @@ This command will create rootCA.crt, which will be valid for 999 days, using roo
 
 And now you have your own CA's private key and certificate (which acts as a public key). So, to issue certificates to servers all you need to do is take Certificate Signing Request aka CSR (provided by the server which want its certificate from the CA) and create its certificate using this rootCA.key.
 
-#Issuing Server Certs with your own CA
+##Issuing Server Certs with your own CA
 Now since you have your own CA, you can start distributing certificates to Server signed by you. In order to do so follow the following steps : 
 
 * Create private key `server.key` as we did for CA
