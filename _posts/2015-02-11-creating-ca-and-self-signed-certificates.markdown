@@ -108,4 +108,4 @@ openssl ca -batch -days 999 -in server.csr -out server.crt -keyfile rootCA.key -
 
 This command will issue you **server.crt** which will be valid for 999 days. And voilà you have server certificate which is issued by you :D.
  
-Now, [install your Root Certificate]({{site.url}}/_posts/installing-root-ca-certificate-in-mac-osx/) in any system to make it trust the certificates issue by you. Finally, configure your local Apache server for SSL traffic with the `server.key` and `server.crt` to test if it allows ssl traffic on that domain.
+Now, [install your Root Certificate]({{site.url}}/installing-root-ca-certificate-in-mac-osx) in any system to make it trust the certificates issue by you. Finally, configure your local Apache server for SSL traffic with the `server.key` and `server.crt` to test if it allows ssl traffic on that domain.

@@ -23,7 +23,7 @@ a {
 	text-decoration: none;
 	color: $link-color; 
 	&:visited { 
-		color: lighten($link-color, 20); 
+		color: darken($link-color, 10); 
 	}
 	&:hover { 
 		color: darken($link-color, 20); 
@@ -36,6 +36,18 @@ a {
 	&:active { 
 		outline: 0; 
 	}
+}
+
+.entry-title a{
+	text-decoration: none;
+	color: $entry-title-color;
+	
+}
+
+.header-title .entry-title a{
+	border: 1px dotted #505050;
+	background-color: #cecece;
+	padding: 0px 5px;
 }
 
 .link-arrow {
