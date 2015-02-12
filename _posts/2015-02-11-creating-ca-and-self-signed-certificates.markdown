@@ -4,7 +4,7 @@ title: "Creating your own CA & self signed Certificates"
 modified:
 categories: 
 description: Guide to create your own Central Authority and certificates signed by it.
-tags: [Server, Encryption]
+tags: [Server, Encryption, Certificates]
 image:
   feature:
   credit:
@@ -108,4 +108,4 @@ openssl ca -batch -days 999 -in server.csr -out server.crt -keyfile rootCA.key -
 
 This command will issue you **server.crt** which will be valid for 999 days. And voilà you have server certificate which is issued by you :D.
  
-Now, configure your Server for SSL traffic with the `server.key` and `server.crt` and install `rootCA.crt` on your browser so that your browser identifies your CA and hence allows your Server to exchange data with your browser.
+Now, [install your Root Certificate]({{site.url}}/_posts/installing-root-ca-certificate-in-mac-osx/) in any system to make it trust the certificates issue by you. Finally, configure your local Apache server for SSL traffic with the `server.key` and `server.crt` to test if it allows ssl traffic on that domain.
