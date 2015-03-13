@@ -64,5 +64,5 @@ SSLCARevocationPath
 sudo apachectl restart
 {% endhighlight %}
 
-If everything went well, you should be able to see "**https://localhost**" working. If not :( then you can check the error log file located in "**/var/log/apache2/error_log**" or you can always comment your problems :).
+If everything went well, you should be able to see "https://localhost" working. If not :( then you can check the error log file located in "**/var/log/apache2/error_log**" or you can always comment your problems :).
  
