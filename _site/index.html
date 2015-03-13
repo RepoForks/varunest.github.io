@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Varun Est</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Varun Est</a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li class="active"><a href="http://varunest.github.io/ProjectWardrobe/">Project Wardrobe</a></li>
+
+                    <li class="active visible-xs-block"><a href="/links.html">Links</a></li>
+                    <li class="active"><a href="/archive.html">Archive</a></li>
+                    <li class="active"><a href="/about.html">About</a></li>
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container container-left">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            <div class="sidebar well">
+A Blog by Varun Verma
+</div>
+
+<div class="sidebar well">
+    <h1>Recent Posts</h1>
+    <ul>
+        
+          <li><a href="/2015/02/setting-ssl-with-osxs-built-in-apache-server">Setting SSL With OSX's Built in Apache Server</a></li>
+        
+          <li><a href="/2015/02/installing-root-ca-certificate-in-mac-osx">Installing Root CA Certificate in Mac OSx</a></li>
+        
+          <li><a href="/2015/02/creating-ca-and-self-signed-certificates">Creating your own CA & self signed Certificates</a></li>
+        
+          <li><a href="/2015/02/enabling-and-configuring-apache-server-on-mac-osx">Enabling Php and Configuring Apache Server on Mac OSX</a></li>
+        
+          <li><a href="/2015/02/blog-commencement">Blog Commencement</a></li>
+        
+          <li><a href="/2014/08/jekyll-clean-theme">Jekyll Clean Theme</a></li>
+        
+          <li><a href="/2014/07/Lorem-ipsum-dolor-sit-amet">Lorem ipsum dolor sit amet</a></li>
+        
+          <li><a href="/2014/06/Maecenas-feugiat-fringilla-nibh">Maecenas feugiat fringilla nibh</a></li>
+        
+          <li><a href="/2013/06/Cum-sociis-natoque-penatibus">Cum sociis natoque penatibus</a></li>
+        
+          <li><a href="/2013/05/Nulla-vel-risus-dapibus">Nulla vel risus dapibus</a></li>
+        
+          <li><a href="/2012/05/Vivamus-porttitor-porta-tortor">Vivamus porttitor porta tortor</a></li>
+        
+    </ul>
+</div>
+
+<div class="sidebar well">
+<h1>Links</h1>
+<ul>
+  <li><a href="http://www.github.com/varunest">Github</a></li>
+  <li><a href="http://www.twitter.com/varunest">Twitter</a></li>
+  <li><a href="http://plus.google.com/u/0/+varunverma93/posts">Google+</a></li>
+  <li><a href="https://www.facebook.com/mailvarun93">Facebook</a></li>
+</ul>
+
+</div>
+
+        </div>
+        <div class="col-md-9">
+            
+<div class="article">
+    <div class="well">
+        <h1><a href="/2015/02/setting-ssl-with-osxs-built-in-apache-server">Feb 13, 2015 - Setting SSL With OSX's Built in Apache Server</a></h1>
+        
+          <p class="author"><a href="/2015/02/setting-ssl-with-osxs-built-in-apache-server/#disqus_thread">Comments</a></p>
+        
+        <div class="content">
+            <p>As a developer, you may want to enable SSL on your local Apache! If that is the case, then this post is for you. We are going to tweak some configurations of Apache Webserver in order to make SSL traffic get going.</p>
+
+<p>Before we start, it is important that you have your <strong>private key</strong> and <strong>server certificate</strong> issued by your own CA, which are required because SSL works on public cryptography where certificates are exchanged to generate session keys. If you don&#39;t have them, learn to generate them yourselves <a href="/creating-ca-and-self-signed-certificates">here</a>. Remember to put the Common Name of the Certificate to &quot;Localhost&quot;, since you will be testing this locally.</p>
+
+<ul>
+<li>Okay, considering you have both &quot;Key&quot; and &quot;Certificate&quot; open up <strong>Finder</strong> and press <code>Command+shift+G</code>. Type this location in the dialog box: </li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">/private/etc/apache2</code></pre></div>
+
+<ul>
+<li><p>Once you are there create a folder &quot;SSLData&quot;. </p></li>
+<li><p>Open <code>httpd.conf</code> file in any text editor you are comfortable with(you may want to create its backup first, in case you mess things up). And uncomment te following lines (i.e remove # in front of them) : </p></li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">LoadModule ssl_module libexec/apache2/mod_ssl.so</code></pre></div>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Include /private/etc/apache2/extra/httpd-ssl.conf</code></pre></div>
+ 
+
+<p>This will enable SSL module and will load its configurations from <code>httpd-ssl.conf</code> file. Now, save the <code>httpd.conf</code> file and exit the editor.</p>
+
+<ul>
+<li>Now open up the <code>httpd-ssl.conf</code> located in &quot;extra&quot; folder. Again you may want to create its backup since you can mess things up. </li>
+<li>Search for <strong>DocumentRoot</strong>, and enter the location of your root folder where your sites reside.</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">DocumentRoot /Path/to/root/folder</code></pre></div>
+
+<ul>
+<li>Give <strong>localhost</strong> as a <strong>ServerName</strong></li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ServerName localhost</code></pre></div>
+
+<ul>
+<li>Edit <strong>SSLCertificateFile</strong> to point it to your certificate, which will be in &quot;SSLData&quot; folder we just created :</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">SSLCertificateFile /private/etc/apache2/SSLData/server.crt</code></pre></div>
+
+<ul>
+<li>Repeat for <strong>SSLCertificateKeyFile</strong> :</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">SSLCertificateKeyFile /private/etc/apache2/SSLData/server.key</code></pre></div>
+
+<ul>
+<li>Also comment out (put # in front) the following lines :</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">SSLCACertificatePath</code></pre></div>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">SSLCARevocationPath</code></pre></div>
+
+<ul>
+<li>Save the file and exit the Editor.</li>
+<li>Now put your &#39;<strong>server.crt</strong>&#39; and &#39;<strong>server.key</strong>&#39; in the &quot;SSLData&quot; you just created.</li>
+<li>Now, restart your Apache with following command :</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apachectl restart</code></pre></div>
+
+<p>If everything went well, you should be able to see &quot;<strong><a href="https://localhost">https://localhost</a></strong>&quot; working. If not :( then you can check the error log file located in &quot;<strong>/var/log/apache2/error_log</strong>&quot; or you can always comment your problems :).</p>
+
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class="well">
+        <h1><a href="/2015/02/installing-root-ca-certificate-in-mac-osx">Feb 12, 2015 - Installing Root CA Certificate in Mac OSx</a></h1>
+        
+        <div class="content">
+            <p>This post it to show how to make OSX System trust the <strong>Certificates</strong> issued by your own CA.</p>
+
+<p>I will assume that you know how to create your own CA and issue Certificates with it, if not you can check that <strong><a href="../creating-ca-and-self-signed-certificates">Here</a></strong>.</p>
+
+<ol>
+<li>In your OSX, open <strong>Keychain Access</strong> app (located in Utilities in Applications).</li>
+<li>Under <strong>keychain</strong> select System and under <strong>category</strong> select Certificates.</li>
+<li>Here, Click on <strong>+</strong> sign to add your Root Certificate. Locate the Root Certificate and click on Open.
+<img src="/images/post-images/rootCAInstallation.jpg" alt="Screenshot Installing Root Certificate"></li>
+<li>In the new dialog box click on &quot;Always Trust&quot;</li>
+</ol>
+
+<p>Now you are good to go! All the certificates which are issued by your CA will be trusted by this System. </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class="well">
+        <h1><a href="/2015/02/creating-ca-and-self-signed-certificates">Feb 11, 2015 - Creating your own CA & self signed Certificates</a></h1>
+        
+          <p class="author"><a href="/2015/02/creating-ca-and-self-signed-certificates/#disqus_thread">Comments</a></p>
+        
+        <div class="content">
+            <p>In this post, we will see how to create your own <strong>Central Authority</strong> (CA) and w&#39;ll generate <strong>Certificates</strong> using that CA. This is important procedure to learn because Certificates are practically implemented everywhere, there is SSL encryption in HTTPS protocol in which Certificates play a major role, Certificates are also used for Authentication between server and client etc.</p>
+
+<h4 id="why-ssl-and-certificates-are-required?">Why SSL and Certificates are required?</h4>
+
+<p>What we will see here in this post is very simplified view of how SSL is implemented and how Certificates play their part. 
+Normally traffic sent over the internet is not encrypted and anyone with the sniff tools like <strong>wireshark</strong>, <strong>tcpdump</strong> etc can snoop all the traffic by analyzing the data packets. This can lead to many problems, especially where the security is the main concern, such as in online transactions and credit card data. </p>
+
+<p>To tackle this problem, Secure Socket Layer(SSl) is used to encrypt the data sent over the web. SSL uses assymmetric cryptography, also known as public key cryptography, in which two keys public and private are created. Anything encrypted with one key can only be decrypted using the other key, which ensures that data can come from only authenticated source/server.</p>
+
+<p>So, if SSL encrypts the data then why are Certificates required? Well, technically anyone can encrypt data and send it to you, but who will ensure that data came from trusted or authentic person ? Here Certificates come into play! CA ensures that the certifcate holder is really who he claims to be. This prevents  impersonations attacks.</p>
+
+<h4 id="how-the-system-works!">How the System Works!</h4>
+
+<p>In normal Https protocol, first client sends hello request to Server. Server, then replies with its own Certificate, whose authenticity is checked by the browser i.e if it is signed by known CA or not(CA information is generally stored in the browser). Once the certificate is checked and client is happy, then it sends its session key to the server by encrypting it with the server&#39;s certificate. This session key then used for the rest of the data exchange during the session.</p>
+
+<p>This is just simplified overview, a lot more happens behind the screen. For now this will suffice. Now, lets jump to exciting part. </p>
+
+<p><strong>Note</strong> : This procedure is done in OSX, which is unix based operating system. For other  machines the procedure should be similar.</p>
+
+<h1 id="creating-your-own-ca">Creating your own CA</h1>
+
+<hr>
+
+<p>Before we start it is important to note that the certificates signed by your CA will not be accepted by the browsers because they won&#39;t trust your CA. You must add your own CA in browsers trusted CA&#39;s list. 
+To create CA Open up your terminal and check whether <code>openssl</code> is installed or not. Fire this command :  </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">which openssl</code></pre></div>
+
+<p>If <code>openssl</code> is installed, this will return the directory where it is located or else it will print nothing. <code>openssl</code> is a tool which is open source implementation of SSL and TLS. If you don&#39;t have it, go ahead and install it.</p>
+
+<h4 id="creating-ca-private-key-:">Creating CA private key :</h4>
+
+<p>In terminal, create Directory in which you want to keep the key and certificate of the Central Authority. Navigate to that folder and then fire the following command: </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">openssl genrsa -des3 -out rootCA.key 2048</code></pre></div>
+
+<p>This command will generate RSA private key using triple-DES standards of length 2048 bits which is quite secure. Following is the output(you can give any pass phrase you want) : </p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Generating RSA private key, <span class="m">1024</span> bit long modulus
+.........................................................++++++
+........++++++
+e is <span class="m">65537</span> <span class="o">(</span>0x10001<span class="o">)</span>
+Enter PEM pass phrase:
+Verifying password - Enter PEM pass phrase:
+</code></pre></div>
+<h4 id="removing-passphrase-:">Removing Passphrase :</h4>
+
+<p>Since we now have our CA&#39;s private key, we should probably remove passphrase from it because it can be inconvinient to type passphrase every time we perform operation with this key(keeping in mind that the operations are very large in number). This can done in many ways, one way to do so is following : </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cp rootCA.key rootCA.key.org
+openssl rsa -in rootCA.key.org -out rootCA.key</code></pre></div>
+
+<h4 id="creating-ca-self-signed-certificate-:">Creating CA self signed Certificate :</h4>
+
+<p>Fire this command in the terminal to create your CA Certificate : </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">openssl req  -new -x509 -days <span class="m">999</span> -key rootCA.key -out rootCA.crt</code></pre></div>
+
+<p>There will be following prompts : </p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Country Name <span class="o">(</span><span class="m">2</span> letter code<span class="o">)</span> <span class="o">[</span>GB<span class="o">]</span>:IN
+State or Province Name <span class="o">(</span>full name<span class="o">)</span> <span class="o">[</span>Berkshire<span class="o">]</span>: Chandigarh
+Locality Name <span class="o">(</span>eg, city<span class="o">)</span> <span class="o">[</span>Newbury<span class="o">]</span>: Chandigarh
+Organization Name <span class="o">(</span>eg, company<span class="o">)</span> <span class="o">[</span>My Company Ltd<span class="o">]</span>: Varunest
+Organizational Unit Name <span class="o">(</span>eg, section<span class="o">)</span> <span class="o">[]</span>:Information Technology
+Common Name <span class="o">(</span>eg, your name or your server<span class="s1">&#39;s hostname) []:varunest.com</span>
+<span class="s1">Email Address []: mailvarun93@gmail.com</span>
+<span class="s1">Please enter the following &#39;</span>extra<span class="err">&#39;</span> attributes
+to be sent with your certificate request
+A challenge password <span class="o">[]</span>:
+An optional company name <span class="o">[]</span>:
+</code></pre></div>
+<p>This command will create rootCA.crt, which will be valid for 999 days, using rootCA.key.</p>
+
+<p>And now you have your own CA&#39;s private key and certificate (which acts as a public key). So, to issue certificates to servers all you need to do is take Certificate Signing Request aka CSR (provided by the server which want its certificate from the CA) and create its certificate using this rootCA.key.</p>
+
+<h1 id="issuing-server-certs-with-your-own-ca">Issuing Server Certs with your own CA</h1>
+
+<hr>
+
+<p>Now since you have your own CA, you can start distributing certificates to Server signed by you. In order to do so follow the following steps : </p>
+
+<ul>
+<li>Create private key <code>server.key</code> as we did for CA</li>
+<li>Create CSR (Certificate Signing Request) with this <code>server.key</code> with the following command : </li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">openssl req -new -key server.key -out server.csr</code></pre></div>
+
+<p>There will be lot of prompts, answer them correctly and in common name type the Fully qualified domain name of your server for which you want your certificate. This will create your CSR <code>server.csr</code></p>
+
+<ul>
+<li>Now remove passphrase from the <code>server.key</code> like we did earlier</li>
+<li>Generally, the CSR created by the server i.e <code>server.csr</code> is sent to the CA from which you want your certificate. Since here ourselves are the CA therefore we will sign the certificate using our CA Certificate <code>rootCA.crt</code> by the following command : </li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">openssl ca -batch -days <span class="m">999</span> -in server.csr -out server.crt -keyfile rootCA.key -cert rootCA.crt</code></pre></div>
+
+<p>This command will issue you <strong>server.crt</strong> which will be valid for 999 days. And voilà you have server certificate which is issued by you :D.</p>
+
+<p>Now, <a href="/installing-root-ca-certificate-in-mac-osx">install your Root Certificate</a> in any system to make it trust the certificates issue by you. Finally, configure your local Apache server for SSL traffic with the <code>server.key</code> and <code>server.crt</code> to test if it allows ssl traffic on that domain.</p>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="pagination">
+  
+  <span class="page_number ">Page: 1 of 4</span>
+  
+    <a class="btn btn-default" href="/page2" class="next">Older</a>
+  
+</div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12 footer navbar-inverse navbar-fixed-bottom">
+            <p class="copyright">&copy;2015 Varun Est. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="https://github.com/scotte/jekyll-clean">Scott Emmons</a>
+            under
+            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a></p>
+        </div>
+    </div>
+</div>
+
+
+  <script type="text/javascript">
+    var disqus_shortname = 'varunest';
+
+   (function () {
+     var s = document.createElement('script'); s.async = true;
+     s.type = 'text/javascript';
+     s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+     (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+   }());
+ </script>
+
+
+
+
+
+</body>
+</html>
+

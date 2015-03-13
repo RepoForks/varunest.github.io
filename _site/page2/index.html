@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Varun Est</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Varun Est</a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li class="active"><a href="http://varunest.github.io/ProjectWardrobe/">Project Wardrobe</a></li>
+
+                    <li class="active visible-xs-block"><a href="/links.html">Links</a></li>
+                    <li class="active"><a href="/archive.html">Archive</a></li>
+                    <li class="active"><a href="/about.html">About</a></li>
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container container-left">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            <div class="sidebar well">
+A Blog by Varun Verma
+</div>
+
+<div class="sidebar well">
+    <h1>Recent Posts</h1>
+    <ul>
+        
+          <li><a href="/2015/02/setting-ssl-with-osxs-built-in-apache-server">Setting SSL With OSX's Built in Apache Server</a></li>
+        
+          <li><a href="/2015/02/installing-root-ca-certificate-in-mac-osx">Installing Root CA Certificate in Mac OSx</a></li>
+        
+          <li><a href="/2015/02/creating-ca-and-self-signed-certificates">Creating your own CA & self signed Certificates</a></li>
+        
+          <li><a href="/2015/02/enabling-and-configuring-apache-server-on-mac-osx">Enabling Php and Configuring Apache Server on Mac OSX</a></li>
+        
+          <li><a href="/2015/02/blog-commencement">Blog Commencement</a></li>
+        
+          <li><a href="/2014/08/jekyll-clean-theme">Jekyll Clean Theme</a></li>
+        
+          <li><a href="/2014/07/Lorem-ipsum-dolor-sit-amet">Lorem ipsum dolor sit amet</a></li>
+        
+          <li><a href="/2014/06/Maecenas-feugiat-fringilla-nibh">Maecenas feugiat fringilla nibh</a></li>
+        
+          <li><a href="/2013/06/Cum-sociis-natoque-penatibus">Cum sociis natoque penatibus</a></li>
+        
+          <li><a href="/2013/05/Nulla-vel-risus-dapibus">Nulla vel risus dapibus</a></li>
+        
+          <li><a href="/2012/05/Vivamus-porttitor-porta-tortor">Vivamus porttitor porta tortor</a></li>
+        
+    </ul>
+</div>
+
+<div class="sidebar well">
+<h1>Links</h1>
+<ul>
+  <li><a href="http://www.github.com/varunest">Github</a></li>
+  <li><a href="http://www.twitter.com/varunest">Twitter</a></li>
+  <li><a href="http://plus.google.com/u/0/+varunverma93/posts">Google+</a></li>
+  <li><a href="https://www.facebook.com/mailvarun93">Facebook</a></li>
+</ul>
+
+</div>
+
+        </div>
+        <div class="col-md-9">
+            
+<div class="article">
+    <div class="well">
+        <h1><a href="/2015/02/enabling-and-configuring-apache-server-on-mac-osx">Feb 10, 2015 - Enabling Php and Configuring Apache Server on Mac OSX</a></h1>
+        
+          <p class="author"><a href="/2015/02/enabling-and-configuring-apache-server-on-mac-osx/#disqus_thread">Comments</a></p>
+        
+        <div class="content">
+            <p>Recently I have been writing Server Side Php Script and desiging UI in HTML5 and CSS, so to test and debug my code locally I needed to setup Apache Server and enable Php on it. Fortunately, apache server comes pre-installed in OSX. There are two ways to configure apache, either install clients like MAMP which will do the job for you or do it by yourself i.e Manually.</p>
+
+<h1 id="configuring-server">Configuring Server</h1>
+
+<hr>
+
+<p>In this post, I am going show how to configure Apache Server Manually. Launch Terminal on your mac and open <code>httpd.conf</code> file via following command. It is recommended to make a copy of <code>httpd.conf</code> for backup, incase you mess things up. </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">nano /etc/apache2/httpd.conf</code></pre></div>
+
+<p>In that file search for the line <code>DocumentRoot</code>. In <strong>nano</strong> editor to perform search use <code>ctrl+w</code>. By default it should be : </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">DocumentRoot <span class="s2">&quot;/Library/Webserver/Documents&quot;</span></code></pre></div>
+
+<p>Change the directory to wherever you want your root folder be i.e wherever you want your Sites to host, or keep it default. Now search for <code>&lt;Directory &quot;/Library/Webserver/Documents&quot;&gt;</code> in <code>httpd.conf</code>. Change the Directory to wherever your new root directory is (which you defined in previous step or keep it default if you didn&#39;t modify the Root Directory). Now add the following lines before the closing <code>&lt;/Directory&gt;</code> tag : </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Options Indexes FollowSymLinks Multiviews
+AllowOverride None
+Order allow, deny
+Allow from all</code></pre></div>
+
+<h1 id="enabling-php-on-apache-webserver">Enabling Php on Apache Webserver</h1>
+
+<hr>
+
+<p>Now, since your apache server is configured you need to enable Php. In order to do so search for the following line in <code>httpd.conf</code> </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">LoadModule php5_module libexec/apache2/libphp5.so</code></pre></div>
+
+<p>and uncomment it by removing # in front of this line. This should enable Php execution on your apache server. Finally, save <code>httpd.conf</code> file using <code>ctrl+o</code> and then <code>ctrl+x</code>. 
+Now in Terminal type :</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apachectl restart</code></pre></div>
+
+<p>Launch any browser, and navigate to &quot;<a href="http://localhost">http://localhost</a>&quot; to very the server is running. If everything went well you will see &quot;It Works!&quot; message.</p>
+
+<p>If unfortunately somehow your local Apache Webserver is not working then you can check for errors using : </p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apachectl configtest</code></pre></div>
+
+<p>You can check Error Logs, by tailing the log file located in <code>/var/log/apache2/error_log</code> :</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">tail /var/log/apache2/error_log</code></pre></div>
+
+<p>Happy Coding :)</p>
+
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class="well">
+        <h1><a href="/2015/02/blog-commencement">Feb 9, 2015 - Blog Commencement</a></h1>
+        
+        <div class="content">
+            <blockquote>
+<p>I concur with the opinion that a person should establish his/her identity in the virtual world aka the world of Internet. Consequence being, this Blog.</p>
+</blockquote>
+
+<p>I will be writing about propositions, issues and my daily activities as I atone on my way. This will contain more of a geeky stuff, hacks, programs, code etc. I hope this to be a lively and blissful experience.</p>
+
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class="well">
+        <h1><a href="/2014/08/jekyll-clean-theme">Aug 23, 2014 - Jekyll Clean Theme</a></h1>
+        
+        <div class="content">
+            <ul>
+<li>Get it from <a href="https://github.com/scotte/jekyll-clean">github</a>.</li>
+<li>See the <a href="https://scotte.github.io/jekyll-clean">live demo</a>.</li>
+<li>See it <a href="https://scotte.github.io">in action on my own blog</a>.</li>
+</ul>
+
+<p>Welcome to the sample post for the Jekyll Clean theme.</p>
+
+<p>A simple and clean Jekyll theme using <a href="http://getbootstrap.com">bootstrap</a>
+(not to be confused with jekyll-bootstrap) that&#39;s easy to modify and very
+modular in component and element reuse.</p>
+
+<p>It uses Disqus for comments and includes Google Analytics support. Both of
+these features are disabled by default and can be enabled via _config.yml. You
+can also rip this code out of the templates if you like (footer.html and post.html).
+The beauty of Jekyll - keep things clean... Jekyll Clean!</p>
+
+<p>The theme works well on mobile phones, using a collapsable nav bar and hiding the
+sidebar. The links pane in the sidebar is available on mobile through the nav menu,
+and you can do the same thing for any other sections added to the sidebar.</p>
+
+<p>Don&#39;t forget to occassionally merge against my upstream repository so you can get
+the latest changes. Pull requests are encouraged and accepted!</p>
+
+<h1 id="installation">Installation</h1>
+
+<p>If you don&#39;t have a blog already on github, start by cloning this repository.
+Best to do that directly on github and then clone that down to your computer.</p>
+
+<p>If you already do have a blog, You can certainly apply this theme to your existing
+blog in place, but then you won&#39;t be able to merge as the theme changes. If you
+re-apply your blog history on top of this theme&#39;s <strong>gh-pages</strong> branch, it&#39;s then
+easy to update to the latest version of the theme. You also don&#39;t want to have to
+deal with resolving old conflicts from your existing history, so you may wish to to
+push your existing master off to a new branch so you have the old history and start
+a new branch with this as the start, merging in your _posts and other assets (after
+git rm&#39;ing the current _posts.</p>
+
+<p>Not ideal, but you have to make a choice - either apply it manually or base your
+blog off this theme&#39;s branch. Either way it will work, and both have their own
+pros and cons.</p>
+
+<p>You can setup an upstream tracking repository like so:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git remote add upstream git@github.com:scotte/jekyll-clean.git
+</code></pre></div>
+<p>And now when you wish to merge your own branch onto the latest version of the
+theme, simply do:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ git fetch upstream
+$ git merge upstream/gh-pages
+</code></pre></div>
+<p>Of course you will have to resolve conflicts for _config.yml, _includes/links-list.html,
+and _posts, and so on, but in practice this is pretty simple.</p>
+
+<p>This is how I maintain my own blog which is based on this theme. The old history is
+sitting in an <strong>old-master</strong> branch that I can refer to when I need to.</p>
+
+<h1 id="license">License</h1>
+
+<p>The content of this theme is distributed and licensed under a
+<img src="/images/cc_by_88x31.png" alt="License Badge">
+<a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution 4.0 License</a></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">This license lets others distribute, remix, tweak, and build upon your work,
+even commercially, as long as they credit you for the original creation. This
+is the most accommodating of licenses offered. Recommended for maximum
+dissemination and use of licensed materials.
+</code></pre></div>
+<p>In other words: you can do anything you want with this theme on any site, just please
+provide a link to <a href="https://github.com/scotte/jekyll-clean">the original theme on github</a>
+so I get credit for the original design. Beyond that, have at it!</p>
+
+<p>This theme includes the following files which are the properties of their
+respective owners:</p>
+
+<ul>
+<li>js/bootstrap.min.js - <a href="http://getbootstrap.com">bootstrap</a></li>
+<li>css/bootstrap.min.css - <a href="http://getbootstrap.com">bootstrap</a></li>
+<li>js/jquery.min.js - <a href="https://jquery.com">jquery</a></li>
+<li>images/cc_by_88x31.png - <a href="https://creativecommons.org">creative commons</a></li>
+</ul>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="pagination">
+  
+      
+        <a class="btn btn-default" href="/index.html" class="previous">Newer</a>
+      
+  
+  <span class="page_number ">Page: 2 of 4</span>
+  
+    <a class="btn btn-default" href="/page3" class="next">Older</a>
+  
+</div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12 footer navbar-inverse navbar-fixed-bottom">
+            <p class="copyright">&copy;2015 Varun Est. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="https://github.com/scotte/jekyll-clean">Scott Emmons</a>
+            under
+            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution</a></p>
+        </div>
+    </div>
+</div>
+
+
+  <script type="text/javascript">
+    var disqus_shortname = 'varunest';
+
+   (function () {
+     var s = document.createElement('script'); s.async = true;
+     s.type = 'text/javascript';
+     s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+     (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+   }());
+ </script>
+
+
+
+
+
+</body>
+</html>
+

@@ -13,9 +13,11 @@ comments: true
 share: true
 date: 2015-02-10T12:08:52+05:30
 ---
-Recently I have been writing Server Side Php Script and desiging UI in HTML5 and CSS, so to test and debug my code locally I needed to setup Apache Server and enable Php on it. Fortunately, apache server comes pre-installed in OSX. There are two ways to configure apache, either install clients like MAMP which will do the job for you or do it by yourself i.e Manually. ![Apache Icon]({{site.url}}/images/post-images/apache.jpg){: .image-right}
+Recently I have been writing Server Side Php Script and desiging UI in HTML5 and CSS, so to test and debug my code locally I needed to setup Apache Server and enable Php on it. Fortunately, apache server comes pre-installed in OSX. There are two ways to configure apache, either install clients like MAMP which will do the job for you or do it by yourself i.e Manually.
 
-###Configuring Server
+Configuring Server
+==================
+***
 In this post, I am going show how to configure Apache Server Manually. Launch Terminal on your mac and open `httpd.conf` file via following command. It is recommended to make a copy of `httpd.conf` for backup, incase you mess things up. 
 {% highlight bash %}
 nano /etc/apache2/httpd.conf
@@ -33,7 +35,10 @@ AllowOverride None
 Order allow, deny
 Allow from all
 {% endhighlight %}
-###Enabling Php on Apache Webserver
+
+Enabling Php on Apache Webserver
+================================
+***
 Now, since your apache server is configured you need to enable Php. In order to do so search for the following line in `httpd.conf` 
 {% highlight bash %}
 LoadModule php5_module libexec/apache2/libphp5.so

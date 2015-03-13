@@ -13,9 +13,10 @@ comments: true
 share: true
 date: 2015-02-11T17:19:23+05:30
 ---
-In this post, we will see how to create your own **Central Authority** (CA) and w'll generate **Certificates** using that CA. This is important procedure to learn because Certificates are practically implemented everywhere, there is SSL encryption in HTTPS protocol in which Certificates play a major role, Certificates are also used for Authentication between server and client etc. ![Digital Certificate]({{site.url}}/images/post-images/digitalcertificate.png){: .image-right} 
+In this post, we will see how to create your own **Central Authority** (CA) and w'll generate **Certificates** using that CA. This is important procedure to learn because Certificates are practically implemented everywhere, there is SSL encryption in HTTPS protocol in which Certificates play a major role, Certificates are also used for Authentication between server and client etc.
 
-###Why SSL and Certificates are required?
+
+####Why SSL and Certificates are required?
 What we will see here in this post is very simplified view of how SSL is implemented and how Certificates play their part. 
 Normally traffic sent over the internet is not encrypted and anyone with the sniff tools like **wireshark**, **tcpdump** etc can snoop all the traffic by analyzing the data packets. This can lead to many problems, especially where the security is the main concern, such as in online transactions and credit card data. 
 
@@ -23,14 +24,16 @@ To tackle this problem, Secure Socket Layer(SSl) is used to encrypt the data sen
 
 So, if SSL encrypts the data then why are Certificates required? Well, technically anyone can encrypt data and send it to you, but who will ensure that data came from trusted or authentic person ? Here Certificates come into play! CA ensures that the certifcate holder is really who he claims to be. This prevents  impersonations attacks.
 
-###How the System Works!
+####How the System Works!
 In normal Https protocol, first client sends hello request to Server. Server, then replies with its own Certificate, whose authenticity is checked by the browser i.e if it is signed by known CA or not(CA information is generally stored in the browser). Once the certificate is checked and client is happy, then it sends its session key to the server by encrypting it with the server's certificate. This session key then used for the rest of the data exchange during the session.
 
 This is just simplified overview, a lot more happens behind the screen. For now this will suffice. Now, lets jump to exciting part. 
 
 **Note** : This procedure is done in OSX, which is unix based operating system. For other  machines the procedure should be similar.
 
-##Creating your own CA
+Creating your own CA
+=======================
+***
 Before we start it is important to note that the certificates signed by your CA will not be accepted by the browsers because they won't trust your CA. You must add your own CA in browsers trusted CA's list. 
 To create CA Open up your terminal and check whether `openssl` is installed or not. Fire this command :  
 {% highlight bash %}
@@ -38,7 +41,7 @@ which openssl
 {% endhighlight %}
 If `openssl` is installed, this will return the directory where it is located or else it will print nothing. `openssl` is a tool which is open source implementation of SSL and TLS. If you don't have it, go ahead and install it.
 
-###Creating CA private key :
+####Creating CA private key :
 In terminal, create Directory in which you want to keep the key and certificate of the Central Authority. Navigate to that folder and then fire the following command: 
 {% highlight bash %}
 openssl genrsa -des3 -out rootCA.key 2048
@@ -54,7 +57,7 @@ Enter PEM pass phrase:
 Verifying password - Enter PEM pass phrase:
 ~~~
 
-###Removing Passphrase : 
+####Removing Passphrase : 
 Since we now have our CA's private key, we should probably remove passphrase from it because it can be inconvinient to type passphrase every time we perform operation with this key(keeping in mind that the operations are very large in number). This can done in many ways, one way to do so is following : 
 
 {% highlight bash %}
@@ -62,7 +65,7 @@ cp rootCA.key rootCA.key.org
 openssl rsa -in rootCA.key.org -out rootCA.key
 {% endhighlight %}
 
-###Creating CA self signed Certificate :
+####Creating CA self signed Certificate :
 Fire this command in the terminal to create your CA Certificate : 
 
 {% highlight bash %}
@@ -89,7 +92,9 @@ This command will create rootCA.crt, which will be valid for 999 days, using roo
 
 And now you have your own CA's private key and certificate (which acts as a public key). So, to issue certificates to servers all you need to do is take Certificate Signing Request aka CSR (provided by the server which want its certificate from the CA) and create its certificate using this rootCA.key.
 
-##Issuing Server Certs with your own CA
+Issuing Server Certs with your own CA
+=====================================
+***
 Now since you have your own CA, you can start distributing certificates to Server signed by you. In order to do so follow the following steps : 
 
 * Create private key `server.key` as we did for CA
