@@ -1,34 +1,67 @@
-# Jekyll configuration
+# Site
+title: Varun
+description: A Software Craftsman, livin' by code standards
 
-name: Varun Est
-description: A Blog by Varun Verma
+logo: logo.png                                       # Site logo
+locale: en_US
 
-# url is currently only used only for the RSS feed in feed.xml
-#url: http://scotte.github.io
+# Left Block Images
+background:
+  homepage: images/home.png                           # this image will be shown on homepage's left block
+  post-list: images/unsplash-image-10.jpg             # this image will be shown on post list page
+  default-post: images/unsplash-gallery-image-3.jpg   # this image will be shown when post's front matter doesn't specify any image
 
-# baseurl will often be '', but for a project page on gh-pages, it needs to
-# be the project name.
-# *** IMPORTANT: If your local "jekyll serve" throws errors change this to '' or
-#     run it like so: jekyll serve --baseurl=''
-baseurl: ''
-# This can be '' to hide the Github nav button
-github: 'varunest'
+# Jekyll
+permalink:          /:title/
+markdown:           kramdown
+highlighter:        rouge
+kramdown:
+  auto_ids:         true
+  footnote_nr:      1
+  entity_output:    as_char
+  toc_levels:       1..6
+  enable_coderay:   false
+sass:
+  sass_dir:         assets/_sass
+  style:            compressed
 
-# Set this to your UA-# value, or '' to disable the block completely
-gaaccount: ''
+# Google Analytics
+#google-analytics: UA-XXXXX-Y
 
-# Set this to your disqus shortname to enable comments. Note that the 'comments'
-# setting below must also be true. Individual posts can override 'comments' to
-# disable on a post-by-post basis
+# Social Links
+email:             mailvarunest@gmail.com
+#google.plus:        username
+twitter:            varunest
+facebook:           mailvarun93
+github:             varunest
+stackoverflow:     5195477/varun-verma   from a "http://stackoverflow.com/users/5195477/varun-verma" link
+linkedin:          varunest
+#xing:              username
+#instagram:          username
+#lastfm:            username
+#tumblr:            username
+#pinterest:         username
+#foursquare:        username
+#steam:              username
+#dribbble:          username
+#youtube:           username
+#soundcloud:        username
+#weibo:             username
+#flickr:            username
+#codepen:           username
+#keybase:           username
+#xmpp:              username@server.com
+#hackernews:        username
+# behance:           username
 disqus: 'varunest'
 comments: true
 
-permalink: /:year/:month/:title
-paginate: 3
+# Gems
+gems:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-gist
 
-highlighter: pygments
-markdown: redcarpet
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
-
-exclude: ['README.md', 'LICENSE']
+# Exclude list
+include: [_pages]
+exclude: [README.md, Gemfile, Gemfile.lock, _site, src, vendor, CNAME, LICENSE, Rakefile, .sass-cache, .DS_Store]

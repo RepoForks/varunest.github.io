@@ -1,14 +1,10 @@
 ---
 layout: post
-title: "Setting SSL With OSX's Built in Apache Server"
+title: "Configure SSL on Apache Server"
 modified:
 categories: 
 description:
 tags: [Apache, Server, SSL, OSX]
-image:
-  feature:
-  credit:
-  creditlink:
 comments: true
 share:	true
 date: 2015-02-13T10:56:53+05:30
@@ -25,12 +21,12 @@ Before we start, it is important that you have your **private key** and **server
 * Once you are there create a folder "SSLData". 
 
 * Open `httpd.conf` file in any text editor you are comfortable with(you may want to create its backup first, in case you mess things up). And uncomment te following lines (i.e remove # in front of them) : 
-		{% highlight bash %}
-		LoadModule ssl_module libexec/apache2/mod_ssl.so
-		{% endhighlight %}
-		{% highlight bash %}
-		Include /private/etc/apache2/extra/httpd-ssl.conf
-		{% endhighlight %} 
+
+```
+LoadModule ssl_module libexec/apache2/mod_ssl.so
+Include /private/etc/apache2/extra/httpd-ssl.conf
+```
+		
 This will enable SSL module and will load its configurations from `httpd-ssl.conf` file. Now, save the `httpd.conf` file and exit the editor.
 
 * Now open up the `httpd-ssl.conf` located in "extra" folder. Again you may want to create its backup since you can mess things up. 

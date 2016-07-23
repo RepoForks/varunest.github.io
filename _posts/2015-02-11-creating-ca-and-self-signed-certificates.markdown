@@ -1,14 +1,10 @@
 ---
 layout: post
-title: "Creating your own CA & self signed Certificates"
+title: "Creating CA & self signed Certificates"
 modified:
 categories: 
 description: Guide to create your own Central Authority and certificates signed by it.
 tags: [Server, Encryption, Certificates]
-image:
-  feature:
-  credit:
-  creditlink:
 comments: true
 share: true
 date: 2015-02-11T17:19:23+05:30
@@ -16,7 +12,7 @@ date: 2015-02-11T17:19:23+05:30
 In this post, we will see how to create your own **Central Authority** (CA) and w'll generate **Certificates** using that CA. This is important procedure to learn because Certificates are practically implemented everywhere, there is SSL encryption in HTTPS protocol in which Certificates play a major role, Certificates are also used for Authentication between server and client etc.
 
 
-####Why SSL and Certificates are required?
+## Why SSL and Certificates are required?
 What we will see here in this post is very simplified view of how SSL is implemented and how Certificates play their part. 
 Normally traffic sent over the internet is not encrypted and anyone with the sniff tools like **wireshark**, **tcpdump** etc can snoop all the traffic by analyzing the data packets. This can lead to many problems, especially where the security is the main concern, such as in online transactions and credit card data. 
 
@@ -24,7 +20,7 @@ To tackle this problem, Secure Socket Layer(SSl) is used to encrypt the data sen
 
 So, if SSL encrypts the data then why are Certificates required? Well, technically anyone can encrypt data and send it to you, but who will ensure that data came from trusted or authentic person ? Here Certificates come into play! CA ensures that the certifcate holder is really who he claims to be. This prevents  impersonations attacks.
 
-####How the System Works!
+### How the System Works!
 In normal Https protocol, first client sends hello request to Server. Server, then replies with its own Certificate, whose authenticity is checked by the browser i.e if it is signed by known CA or not(CA information is generally stored in the browser). Once the certificate is checked and client is happy, then it sends its session key to the server by encrypting it with the server's certificate. This session key then used for the rest of the data exchange during the session.
 
 This is just simplified overview, a lot more happens behind the screen. For now this will suffice. Now, lets jump to exciting part. 
@@ -41,7 +37,7 @@ which openssl
 {% endhighlight %}
 If `openssl` is installed, this will return the directory where it is located or else it will print nothing. `openssl` is a tool which is open source implementation of SSL and TLS. If you don't have it, go ahead and install it.
 
-####Creating CA private key :
+### Creating CA private key :
 In terminal, create Directory in which you want to keep the key and certificate of the Central Authority. Navigate to that folder and then fire the following command: 
 {% highlight bash %}
 openssl genrsa -des3 -out rootCA.key 2048
@@ -57,7 +53,7 @@ Enter PEM pass phrase:
 Verifying password - Enter PEM pass phrase:
 ~~~
 
-####Removing Passphrase : 
+### Removing Passphrase : 
 Since we now have our CA's private key, we should probably remove passphrase from it because it can be inconvinient to type passphrase every time we perform operation with this key(keeping in mind that the operations are very large in number). This can done in many ways, one way to do so is following : 
 
 {% highlight bash %}
@@ -65,7 +61,7 @@ cp rootCA.key rootCA.key.org
 openssl rsa -in rootCA.key.org -out rootCA.key
 {% endhighlight %}
 
-####Creating CA self signed Certificate :
+### Creating CA self signed Certificate :
 Fire this command in the terminal to create your CA Certificate : 
 
 {% highlight bash %}
@@ -74,7 +70,7 @@ openssl req  -new -x509 -days 999 -key rootCA.key -out rootCA.crt
 
 There will be following prompts : 
 
-~~~ bash
+``` bash
 Country Name (2 letter code) [GB]:IN
 State or Province Name (full name) [Berkshire]: Chandigarh
 Locality Name (eg, city) [Newbury]: Chandigarh
@@ -86,7 +82,7 @@ Please enter the following 'extra' attributes
 to be sent with your certificate request
 A challenge password []:
 An optional company name []:
-~~~
+```
 
 This command will create rootCA.crt, which will be valid for 999 days, using rootCA.key.
 

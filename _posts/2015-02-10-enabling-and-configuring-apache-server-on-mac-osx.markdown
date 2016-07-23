@@ -1,14 +1,10 @@
 ---
 layout: post
-title: "Enabling Php and Configuring Apache Server on Mac OSX"
+title: "Enable & Configure Php on Apache Server"
 modified:
 categories:
 description: "Steps to configure Apache Server and enable Php on Mac OSX"
 tags: [apache, server, php, OSX]
-image:
-  feature:
-  credit:
-  creditlink:
 comments: true
 share: true
 date: 2015-02-10T12:08:52+05:30

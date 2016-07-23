@@ -4,14 +4,10 @@ title: "Blog Commencement"
 modified:
 categories: 
 description:
-tags: []
-image:
-  feature:
-  credit:
-  creditlink:
-comments: false
+tags: 
 share: false
 date: 2015-02-9T00:00:30+05:30
+comments: false
 ---
 >I concur with the opinion that a person should establish his/her identity in the virtual world aka the world of Internet. Consequence being, this Blog.
 

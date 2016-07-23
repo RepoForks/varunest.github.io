@@ -1,16 +1,12 @@
 ---
 layout: post
-title: "Installing Root CA Certificate in Mac OSx"
+title: "Install Root CA Certificate in Mac OSx"
 modified:
 categories: 
 description:
 tags: [OSX, Certificates]
-image:
-  feature:
-  credit:
-  creditlink:
-comments:
-share:
+comments: true
+share: true
 date: 2015-02-12T10:49:06+05:30
 ---
 This post it to show how to make OSX System trust the **Certificates** issued by your own CA.
