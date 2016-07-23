@@ -1,7 +1,7 @@
 # Site
 title: Varun Verma
 description: A Software Craftsman, livin' by code standards
-# url: /
+#url: varunest.com
 
 logo: logo.png                                       # Site logo
 locale: en_US
@@ -62,6 +62,7 @@ gems:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-gist
+  - jekyll-seo-tag
 
 # Exclude list
 include: [_pages]
