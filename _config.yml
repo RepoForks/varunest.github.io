@@ -1,6 +1,7 @@
 # Site
-title: Varun
+title: Varun Verma
 description: A Software Craftsman, livin' by code standards
+# url: /
 
 logo: logo.png                                       # Site logo
 locale: en_US
